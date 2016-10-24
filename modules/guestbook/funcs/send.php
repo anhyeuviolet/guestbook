@@ -24,7 +24,7 @@ if( $nv_Request->isset_request( 'submit', 'post' ) )
 	$array_data['name'] = $nv_Request->get_string( 'name', 'post', '' );
 	$array_data['email'] = $nv_Request->get_string( 'email', 'post', '' );
 	$array_data['testimonial'] = $nv_Request->get_string( 'testimonial', 'post', '' );
-	$array_data['fcode'] = $nv_Request->get_string( 'fcode', 'post', '' );
+	$array_data['nv_seccode'] = $nv_Request->get_string( 'nv_seccode', 'post', '' );
 	
 	if( empty( $array_data['title'] ) )
 	{
@@ -46,7 +46,7 @@ if( $nv_Request->isset_request( 'submit', 'post' ) )
 	{
 		$error = $lang_module['error_testimonial'];
 	}
-	elseif( ! nv_capcha_txt( $array_data['fcode'] ) )
+	elseif( ! nv_capcha_txt( $array_data['nv_seccode'] ) )
 	{
 		$error = $lang_module['error_captcha'];
 	}

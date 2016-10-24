@@ -63,12 +63,11 @@ function nv_send_theme( $array, $error )
 	$xtpl = new XTemplate( "send.tpl", NV_ROOTDIR . "/themes/" . $module_info['template'] . "/modules/" . $module_file );
 	$xtpl->assign( 'LANG', $lang_module );
 	$xtpl->assign( 'DATA', $array );
+	$xtpl->assign( 'CAPTCHA_REFRESH', $lang_global['captcharefresh'] );
+	$xtpl->assign( 'CAPTCHA_REFR_SRC', NV_BASE_SITEURL . NV_FILES_DIR . '/images/refresh.png' );
+	$xtpl->assign( 'N_CAPTCHA', $lang_global['securitycode'] );
 	$xtpl->assign( 'GFX_WIDTH', NV_GFX_WIDTH );
 	$xtpl->assign( 'GFX_HEIGHT', NV_GFX_HEIGHT );
-	$xtpl->assign( 'NV_BASE_SITEURL', NV_BASE_SITEURL );
-	$xtpl->assign( 'CAPTCHA_REFRESH', $lang_global['captcharefresh'] );
-	$xtpl->assign( 'CAPTCHA_REFR_SRC', NV_BASE_SITEURL . "images/refresh.png" );
-	$xtpl->assign( 'NV_GFX_NUM', NV_GFX_NUM );
 	
 	if( ! empty( $error ) )
 	{

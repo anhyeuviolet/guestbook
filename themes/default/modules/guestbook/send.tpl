@@ -34,9 +34,7 @@
 	<div class="form-group">
 		<label class="col-sm-3 control-label">{LANG.anticode}<span class="text-danger"> (*)</span>:</label>
 		<div class="col-sm-9">
-			<input type="text" maxlength="6" value="" id="fcode_iavim" name="fcode" class="txtCaptcha form-control pull-left" style="width: 100px" />
-			<img height="22" src="{NV_BASE_SITEURL}index.php?scaptcha=captcha" title="{LANG.captcha}" alt="{LANG.captcha}" id="vimg" />
-			<img alt="{CAPTCHA_REFRESH}" src="{CAPTCHA_REFR_SRC}" width="16" height="16" class="refresh" onclick="nv_change_captcha('vimg','fcode_iavim');"/>
+			<input name="nv_seccode" type="text" id="seccode" class="form-control" maxlength="{GFX_NUM}" style="width: 100px; float: left !important; margin: 2px 5px 0 !important;"/><img class="captchaImg pull-left" style="margin-top: 5px;" alt="{N_CAPTCHA}" src="{NV_BASE_SITEURL}index.php?scaptcha=captcha&t={NV_CURRENTTIME}" width="{GFX_WIDTH}" height="{GFX_HEIGHT}" /><img alt="{CAPTCHA_REFRESH}" src="{CAPTCHA_REFR_SRC}" width="16" height="16" class="refresh pull-left resfresh1" style="margin: 9px;" onclick="change_captcha('#seccode');"/>
 		</div>
 	</div>
 	
