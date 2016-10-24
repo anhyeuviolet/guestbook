@@ -10,27 +10,28 @@
 
 if ( ! defined( 'NV_MAINFILE' ) ) die( 'Stop!!!' );
 
-if ( ! nv_function_exists( 'nv_function_new' ) )
+if ( ! nv_function_exists( 'nv_function_guestbook_new' ) )
 {
-    function nv_block_config_new( $module, $data_block, $lang_block )
+    function nv_block_config_guestbook_new( $module, $data_block, $lang_block )
     {
-        global $db, $language_array, $site_mods;
+        global $site_mods, $nv_Cache;
 
         $html = "";
 		
-        $html .= "<tr>";
-        $html .= "	<td>" . $lang_block['numrow'] . "</td>";
-        $html .= "	<td><input type=\"text\" name=\"config_numrow\" size=\"5\" value=\"" . $data_block['numrow'] . "\"/></td>";
-        $html .= "</tr>";
-		$html .= "<tr>";
-        $html .= "	<td>" . $lang_block['lenght'] . "</td>";
-        $html .= "	<td><input type=\"text\" name=\"config_lenght\" size=\"5\" value=\"" . $data_block['lenght'] . "\"/></td>";
-		$html .= "</tr>";
+        $html .= '<tr>';
+        $html .= '<td>' . $lang_block['numrow'] . '</td>';
+        $html .= '<td><input type="text" class="form-control w200" name="config_numrow" size="5" value="' . $data_block['numrow'] . '"/></td>';
+        $html .= '</tr>';
+        
+        $html .= '<tr>';
+        $html .= '<td>' . $lang_block['lenght'] . '</td>';
+        $html .= '<td><input type="text" class="form-control w200" name="config_lenght" size="5" value="' . $data_block['lenght'] . '"/></td>';
+        $html .= '</tr>';
 
         return $html;
     }
 
-    function nv_block_config_new_submit( $module, $lang_block )
+    function nv_block_config_guestbook_new_submit( $module, $lang_block )
     {
         global $nv_Request;
         $return = array();
@@ -41,7 +42,7 @@ if ( ! nv_function_exists( 'nv_function_new' ) )
         return $return;
     }
 	
-	function nv_function_new( $block_config )
+	function nv_function_guestbook_new( $block_config )
 	{		
 		global $global_config, $module_info, $lang_module, $site_mods, $db, $my_head, $module_name;
 
@@ -87,7 +88,6 @@ if ( ! nv_function_exists( 'nv_function_new' ) )
 		
 		while( $row = $result->fetch() )
 		{
-			//$row['detail'] = NV_BASE_SITEURL . "index.php?" . NV_NAME_VARIABLE . "=" . $module . "&" . NV_OP_VARIABLE . "=main/" . $row['id'] . "-" . change_alias( $row['title'] );
 			$row['detail'] = NV_BASE_SITEURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&amp;' . NV_NAME_VARIABLE . '=' . $module . '/' . $row['id'] . "-" . change_alias( $row['title'] );			
 			$row['testimonial'] = nv_clean60( $row['testimonial'], $block_config['lenght'] );
 			$xtpl->assign( 'DATA', $row );
@@ -104,6 +104,6 @@ if( defined( 'NV_SYSTEM' ) )
 	global $site_mods, $module_name;
 	$module = $block_config['module'];
 
-	$content = 	nv_function_new( $block_config );
+	$content = 	nv_function_guestbook_new( $block_config );
 }
 
