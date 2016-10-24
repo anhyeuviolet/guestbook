@@ -23,7 +23,10 @@ if( $nv_Request->isset_request( 'submit', 'post' ) )
 	$array_data['title'] = $nv_Request->get_string( 'title', 'post', '' );
 	$array_data['name'] = $nv_Request->get_string( 'name', 'post', '' );
 	$array_data['email'] = $nv_Request->get_string( 'email', 'post', '' );
-	$array_data['testimonial'] = $nv_Request->get_string( 'testimonial', 'post', '' );
+	
+    $array_data['testimonial'] = $nv_Request->get_string('testimonial', 'post', '');
+    $array_data['testimonial'] = nv_nl2br(nv_htmlspecialchars(strip_tags($array_data['testimonial'])), '<br />');
+	
 	$array_data['nv_seccode'] = $nv_Request->get_string( 'nv_seccode', 'post', '' );
 	
 	if( empty( $array_data['title'] ) )
@@ -81,5 +84,3 @@ $contents = nv_send_theme( $array_data, $error );
 include ( NV_ROOTDIR . "/includes/header.php" );
 echo nv_site_theme( $contents );
 include ( NV_ROOTDIR . "/includes/footer.php" );
-
-
